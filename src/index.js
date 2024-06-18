@@ -7,7 +7,9 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
   </React.StrictMode>
 );
 
