@@ -1,6 +1,7 @@
 import React from 'react';
 import imagen from '../assets/imagen.jpg';
 import { Link, Navigate } from 'react-router-dom';
+import Button from '../../Components/atoms/Button';
 const Home = () => {
 
   return (
@@ -15,8 +16,12 @@ const Home = () => {
         Facilitando tus pagos, <br /> Asegurando tu éxito
       </h1>
       
-      <Link to="/login">
-        <button>Continuar</button>
+      <Link to="/login" className='mt-6 w-72 h-72 '>
+        <Button>Iniciar sesión</Button>
+      </Link>
+
+      <Link to="/SignUp" className='mt-6 w-72 h-72'>
+        <Button>Registrarse</Button>
       </Link>
         
     </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputSection from '../../../Components/organism/InputSection';
 
 const ThirdStep = ({ nextStep, handleInput, form }) => {
   
@@ -41,19 +42,15 @@ const ThirdStep = ({ nextStep, handleInput, form }) => {
          
          </div>
 
-        <div className="mb-6">
-          <label htmlFor="direccion" className="block text-base font-semibold mb-2 opacity-80">Dirección</label>
-          <input
-            type="text"
-            id="direccion"
-            name="direccion"
-            value={form.direccion}
-            onChange={(e) => handleInput({ name: 'direccion', value: e.target.value })}
-            className="w-full h-10 px-2 border border-gray-300 rounded opacity-80"
-            placeholder="Ingresa tu dirección"
-          />
-        
-        </div>
+        <InputSection
+          tag="dirección"
+          name="direccion"
+          type="text"
+          value={form.direccion}
+          handleInput={handleInput}
+        />
+
+       
 
         <button
           type="button"

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputSection from '../../../Components/organism/InputSection';
+import Button from '../../../Components/atoms/Button';
 
 const FirstStep = ({ nextStep, handleInput, form }) => {
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,32 +18,25 @@ const FirstStep = ({ nextStep, handleInput, form }) => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-10">
       <h1 className="text-2xl font-bold text-center mb-12">Registro de usuario</h1>
       <form onSubmit={handleSubmit} className="w-full max-w-md">
-        <div className="mb-6">
-          <label htmlFor="email" className="block text-base font-semibold mb-2 opacity-80">Correo electrónico</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={form.correo}
-            onChange={(e) => handleInput({ name: 'correo', value: e.target.value })}
-            required
-            className="w-full h-10 px-2 border border-gray-300 rounded opacity-80"
-          />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="password" className="block text-base font-semibold mb-2 opacity-80">Contraseña</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={form.password}
-            onChange={(e) => handleInput({ name: 'contraseña', value: e.target.value })}
-            required
-            className="w-full h-10 px-2 border border-gray-300 rounded opacity-80"
-          />
-        </div>
         
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded w-full">Continuar</button>
+        <InputSection
+          tag="email"
+          name="correo"
+          value={form.correo}
+          handleInput={handleInput}
+          type="email"
+        />
+
+        <InputSection
+          tag="password"
+          name="contraseña"
+          value={form.password}
+          handleInput={handleInput}
+          type="password"
+        />
+
+        <Button>Continuar</Button>
+        
       </form>
 
       <div className="mt-6 flex items-center justify-center">
