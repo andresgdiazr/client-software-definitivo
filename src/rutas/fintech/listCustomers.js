@@ -5,32 +5,8 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-
-const items = [
-  {
-    id: 1,
-    title: "Back End Developer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Remote",
-  },
-  {
-    id: 2,
-    title: "Front End Developer",
-    department: "Engineering",
-    type: "Full-time",
-    location: "Remote",
-  },
-  {
-    id: 3,
-    title: "User Interface Designer",
-    department: "Design",
-    type: "Full-time",
-    location: "Remote",
-  },
-];
+import EditCustomer from "./editCustomer";
 
 const user = {
   name: "Tom Cook",
@@ -48,6 +24,19 @@ function classNames(...classes) {
 }
 
 export default function ListCustomers() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRow, setCurrentRow] = useState(null);
+
+  const handleEditClick = (row) => {
+    setCurrentRow(row);
+    setIsModalOpen(true);
+  };
+
+  const handleSave = () => {
+    // Lógica para guardar los datos modificados
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className="min-h-full">
@@ -232,7 +221,7 @@ export default function ListCustomers() {
                         Nombre
                       </th>
                       <th scope="col" class="px-6 py-3">
-                       Cedula 
+                        Cedula
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Dirección
@@ -261,6 +250,7 @@ export default function ListCustomers() {
                       <td class="px-6 py-4">
                         <a
                           href="#"
+                          onClick={() => handleEditClick(3)}
                           class="font-medium text-blue-600 dark:text-green-500 hover:underline"
                         >
                           Edit
@@ -450,6 +440,11 @@ export default function ListCustomers() {
             </div>
           </main>
         </div>
+        {isModalOpen && (
+
+          <EditCustomer setIsModalOpen={setIsModalOpen} handleSave={handleSave} />
+
+        )}
       </div>
     </>
   );
