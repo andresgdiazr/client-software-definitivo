@@ -6,12 +6,13 @@ import HomeCliente from './rutas/Cliente/Home/HomeCliente';
 import Movimientos from './rutas/Cliente/Movimientos/Movimientos';
 import Home from './rutas/fintech/home';
 import Login from './rutas/fintech/login';
+import AddStore from './rutas/fintech/addStore';
 
 function App() {
 
   return (
     <div>
-      <Login />
+      <AddStore />
     </div>
   );
 }
