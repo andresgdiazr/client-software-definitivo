@@ -2,17 +2,8 @@ import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Transition,
-  Field,
-  Label,
-  Switch,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 const user = {
@@ -25,19 +16,12 @@ const navigation = [
   { name: "Tiendas", href: "#", current: true },
   { name: "Clientes", href: "#", current: false },
 ];
-const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
-];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function AddStore() {
-  const [agreed, setAgreed] = useState(false);
-
   return (
     <>
       <div className="min-h-full">
@@ -74,19 +58,10 @@ export default function AddStore() {
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
-                        type="button"
-                        className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                      >
-                        <span className="absolute -inset-1.5" />
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-
                       {/* Profile dropdown */}
-                      <Menu as="div" className="relative ml-3">
+                      <div as="div" className="relative ml-3">
                         <div>
-                          <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <div className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
                             <img
@@ -94,35 +69,9 @@ export default function AddStore() {
                               src={user.imageUrl}
                               alt=""
                             />
-                          </MenuButton>
+                          </div>
                         </div>
-                        <Transition
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
-                        >
-                          <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <MenuItem key={item.name}>
-                                {({ focus }) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      focus ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
-                                    )}
-                                  >
-                                    {item.name}
-                                  </a>
-                                )}
-                              </MenuItem>
-                            ))}
-                          </MenuItems>
-                        </Transition>
-                      </Menu>
+                      </div>
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
@@ -145,7 +94,6 @@ export default function AddStore() {
                   </div>
                 </div>
               </div>
-
               <DisclosurePanel className="md:hidden">
                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                   {navigation.map((item) => (
@@ -165,56 +113,24 @@ export default function AddStore() {
                     </DisclosureButton>
                   ))}
                 </div>
-                <div className="border-t border-gray-700 pb-3 pt-4">
-                  <div className="flex items-center px-5">
-                    <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
-                    </div>
-                    <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
-                        {user.name}
-                      </div>
-                      <div className="text-sm font-medium leading-none text-gray-400">
-                        {user.email}
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    >
-                      <span className="absolute -inset-1.5" />
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </div>
-                  <div className="mt-3 space-y-1 px-2">
-                    {userNavigation.map((item) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.name}
-                      </DisclosureButton>
-                    ))}
-                  </div>
-                </div>
               </DisclosurePanel>
             </>
           )}
         </Disclosure>
-        <div className="isolate bg-white px-6 py-8 sm:py-16 lg:px-8">
+        <header className="bg-white shadow">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Agregar Tienda
+            </h1>
+          </div>
+        </header>
+        <div className="isolate px-6 lg:px-8">
           <div
-            className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-10rem]"
+            className="absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl"
             aria-hidden="true"
           >
             <div
-              className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#8ACEB9] to-[#2ECC71] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+              className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 bg-gradient-to-tr from-[#8ACEB9] to-[#2ECC71] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
               style={{
                 clipPath:
                   "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
@@ -222,7 +138,7 @@ export default function AddStore() {
             />
           </div>
           <div
-            className="absolute inset-x-0 bottom-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:bottom-[-10rem]"
+            className="absolute inset-x-0 -z-10 transform-gpu overflow-hidden blur-3xl"
             aria-hidden="true"
           >
             <div
@@ -234,16 +150,16 @@ export default function AddStore() {
             />
           </div>
           <main>
-            <div className="mx-auto max-w-7xl py-3 sm:px-6 lg:px-8 ">
-              <div className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 ">
+              {/* <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                   Agregar tienda
                 </h2>
-              </div>
+              </div> */}
               <form
                 action="#"
                 method="POST"
-                className="mx-auto mt-16 max-w-3xl sm:mt-10 group"
+                className="mx-auto max-w-3xl group"
                 noValidate
               >
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
