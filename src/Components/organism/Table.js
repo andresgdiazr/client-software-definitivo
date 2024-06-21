@@ -1,6 +1,8 @@
 import React from "react";
 
 const Table = ({head,info=''}) =>{
+
+  console.log(head)
     return(
    
 <div className="flex flex-col">
@@ -10,10 +12,11 @@ const Table = ({head,info=''}) =>{
             <table className="min-w-full text-left text-sm font-light">
               <thead className="border-b font-medium dark:border-neutral-500">
                 <tr>
-                  <th scope="col" className="px-6 py-4">#</th>
-                  <th scope="col" className="px-6 py-4">First</th>
-                  <th scope="col" className="px-6 py-4">Last</th>
-                  <th scope="col" className="px-6 py-4">Handle</th>
+                {head.map((e, index) => (
+                  <th key={index} scope="col" className="px-6 py-4">{e}</th>
+                
+                ))}
+                  
                 </tr>
               </thead>
               <tbody>

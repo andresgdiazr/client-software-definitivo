@@ -1,6 +1,7 @@
 import React from 'react';
 import CardButton from '../../../Components/atoms/CardButton';
 import Lista from '../../../Components/organism/Lista';
+import { Link } from 'react-router-dom';
 
 const HomeCliente = () => {
 
@@ -72,7 +73,9 @@ const HomeCliente = () => {
 
       <div className='w-full flex justify-between mt-5'>
             <h2 className='text-xl font-semibold'>Deudas</h2>  
-            <h3 className='text-md font-extralight'>Ver más</h3>
+            <Link to="deudas">
+              <h3 className='text-md font-extralight'>Ver más</h3>
+            </Link>
       </div> 
 
       <Lista />

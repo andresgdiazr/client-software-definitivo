@@ -6,31 +6,24 @@ import Table from "../../../Components/organism/Table";
 
 const Tiendas = () => {
 
-    const head = ['#','First','Last','Handle'];
+    const head = ['Tienda','Ubicación','Correo','teléfono'];
 
     const [Buscar,SetBuscar]=useState('');
     const [info,SetInfo]=useState('');
 
-    
-
-    useEffect(() =>{
-        head.map((e)=>{
-            console.log(e);
-        })
-    },[]);
 
     return(
 
     <div className="flex justify-center lg:w-screen lg:h-screen lg:bg-[#E4E7ED]">
-      <div className="sm:w-full h-auto flex flex-col p-4 lg:rounded-md lg:mb-10
-        lg:w-1/2  bg-white lg:mt-5 lg:shadow-lg
+      <div className="w-full sm:w-full md:w-full  h-auto flex flex-col p-4 lg:rounded-md lg:mb-10
+        lg:w-1/2 bg-white lg:mt-5 lg:shadow-lg
         ">
          
          <RollBack title={'Tiendas'} />
         
-        <BuscadorSection />
+        <BuscadorSection/>
         
-        <Table />
+        <Table head={head} />
         
       </div>
     </div>

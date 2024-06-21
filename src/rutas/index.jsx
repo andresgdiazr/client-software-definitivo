@@ -7,7 +7,7 @@ import HomeCliente from './Cliente/Home/HomeCliente';
 import Deudas from './Cliente/Listas/Deudas';
 import Movimientos from './Cliente/Listas/Movimientos';
 import Tiendas from './Cliente/Listas/Tiendas';
-
+import HomeTienda from './Tienda/Home/HomeTienda';
 
 const routes = [
     {
@@ -25,6 +25,14 @@ const routes = [
           element:<LoginScreen/>
         },
         {
+          path:'tienda',
+          children:[
+            {index:true,
+              element:<HomeTienda/>,
+            }
+          ],
+        },  
+        {
           path:'cliente',
           children:[
             {
@@ -34,6 +42,14 @@ const routes = [
             {
               path:'deudas',
               element:<Deudas/>
+            },
+            {
+              path:'movimientos',
+              element:<Movimientos/>
+            },
+            {
+              path:'tiendas',
+              element:<Tiendas />
             }
           ]
         }
