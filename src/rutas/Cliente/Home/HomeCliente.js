@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CardButton from '../../../Components/atoms/CardButton';
 import Lista from '../../../Components/organism/Lista';
 import { Link } from 'react-router-dom';
-
+import axios from 'axios';
 const HomeCliente = () => {
 
+  const [state,setState] = useState({
+    items:''
+  });
 
+  function getData () {
+
+    axios.get('https://rickandmortyapi.com/api/character')
+    .then(response => {
+      console.log(response.data.results);
+    })
+    .catch(err => console.log(err))
+
+    
+  }
+
+
+  useEffect(()=>{
+    getData();
+    console.log(state);
+  },[])
 
   return (
 

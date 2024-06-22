@@ -8,10 +8,9 @@ const CardButton = ({children,colorprimario,colorsecundario,tipo,dir}) => {
 
   const navigate = useNavigate();
   
-  console.log(children);
     let Icon = '';
     switch(tipo){
-      case 'Deudas':{ console.log(true); Icon = <Danger/>;
+      case 'Deudas':{  Icon = <Danger/>;
         break;
       }
       case 'Movimientos':{ Icon = <Billetes/>;
