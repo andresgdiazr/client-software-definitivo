@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 const HomeCliente = () => {
 
-  const [state,setState] = useState({
-    items:''
-  });
+  const [state,setState] = useState({items:''});
+  const [user,setUser] = useState('');
+
 
   function getData () {
 
     axios.get('https://rickandmortyapi.com/api/character')
     .then(response => {
-      console.log(response.data.results);
+      setState(response.data.results.slice(0,5));
     })
     .catch(err => console.log(err))
 
@@ -23,7 +23,6 @@ const HomeCliente = () => {
 
   useEffect(()=>{
     getData();
-    console.log(state);
   },[])
 
   return (
@@ -97,7 +96,7 @@ const HomeCliente = () => {
             </Link>
       </div> 
 
-      <Lista />
+            <Lista elementos = {state} />
       
       </div>
 

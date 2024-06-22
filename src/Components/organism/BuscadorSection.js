@@ -2,15 +2,13 @@ import React from "react";
 import InputBuscador from "../atoms/InputBuscador";
 import Buscador from "../atoms/Icons/Buscador";
 
-const BuscadorSection = () => {
+const BuscadorSection = ({input,fun}) => {
 
-    const text='';
 
-    console.log(text);
 
     return(
         <div class="relative flex">
-            <InputBuscador text={text}/>
+            <InputBuscador input={input} fun={fun}/>
             <Buscador />
         </div>
     )
