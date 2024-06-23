@@ -8,6 +8,8 @@ import Deudas from './Cliente/Listas/Deudas';
 import Movimientos from './Cliente/Listas/Movimientos';
 import Tiendas from './Cliente/Listas/Tiendas';
 import HomeTienda from './Tienda/Home/HomeTienda';
+import Consulta from './Tienda/Consulta/Consulta';
+import Venta from './Tienda/Venta/Venta';
 
 const routes = [
     {
@@ -29,6 +31,14 @@ const routes = [
           children:[
             {index:true,
               element:<HomeTienda/>,
+            },
+            {
+              path:'consultar',
+              element:<Consulta/>
+            },
+            {
+              path:'vender',
+              element:<Venta />
             }
           ],
         },  

@@ -1,5 +1,6 @@
 import React from "react";
 import CardButtonTienda from "../../../Components/atoms/CardButtonTienda";
+import Tienda from "../../../Components/atoms/Icons/Tienda";
 
 const HomeTienda = () =>{
     return(
@@ -11,8 +12,8 @@ const HomeTienda = () =>{
                 </div>
                 <div className='w-1/2 flex items-center justify-end'>
                 
-                    <div className='w-10 h-10 rounded-full bg-white shadow-md'>
-                  
+                    <div className='w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center'>
+                    <Tienda/>
                 </div>
                 
                 </div>
@@ -30,11 +31,11 @@ const HomeTienda = () =>{
 
             <div className='w-full flex flex-col lg:flex-row  gap-y-5 lg:gap-x-5 mt-5'>
 
-            <CardButtonTienda colorprimario={"bg-fullblue"} colorsecundario={"bg-lightblue"}>
-                <p className="text-lg text-white font-semibold">Realizar venta</p>
+            <CardButtonTienda colorprimario={"bg-fullblue"} colorsecundario={"bg-lightblue"} item="consultar">
+                <p className="text-lg text-white font-semibold">Buscar cliente</p>
             </CardButtonTienda>
-            <CardButtonTienda colorprimario={"bg-fullyellow"} colorsecundario={"bg-lightyellow"}>
-            <p className="text-lg text-black font-semibold">Realizar Compra</p>
+            <CardButtonTienda colorprimario={"bg-fullyellow"} colorsecundario={"bg-lightyellow"} item="vender">
+            <p className="text-lg text-black font-semibold">Realizar venta</p>
             </CardButtonTienda>
            
             </div>

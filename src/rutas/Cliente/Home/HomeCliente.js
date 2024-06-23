@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import CardButton from '../../../Components/atoms/CardButton';
 import Lista from '../../../Components/organism/Lista';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../../Helpers/axios';
+import User from '../../../Components/atoms/Icons/User';
+
 const HomeCliente = () => {
 
   const [state,setState] = useState({items:''});
@@ -11,11 +13,12 @@ const HomeCliente = () => {
 
   function getData () {
 
-    axios.get('https://rickandmortyapi.com/api/character')
-    .then(response => {
-      setState(response.data.results.slice(0,5));
+   
+    api.get('/clientes/all')
+    .then((Response) =>{
+      console.log(Response);
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 
     
   }
@@ -36,8 +39,8 @@ const HomeCliente = () => {
               <p className='text-xl font-semibold text-white'>Bievenido, Lorem Ipsum</p>
             </div>
             <div className='w-1/2 flex items-center justify-end'>
-              <div className='w-10 h-10 rounded-full bg-white shadow-md'>
-                  
+              <div className='w-10 h-10 rounded-full flex items-center justify-center bg-white shadow-md'>
+                <User/>           
               </div>
             </div>
             
