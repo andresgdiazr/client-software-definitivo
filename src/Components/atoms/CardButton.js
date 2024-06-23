@@ -1,17 +1,36 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Danger from "./Icons/Danger";
+import Billetes from "./Icons/Billetes";
+import Carro from "./Icons/Carro";
 
-const CardButton = ({children,colorprimario,colorsecundario}) => {
+const CardButton = ({children,colorprimario,colorsecundario,tipo,dir}) => {
 
+  const navigate = useNavigate();
+  
+    let Icon = '';
+    switch(tipo){
+      case 'Deudas':{  Icon = <Danger/>;
+        break;
+      }
+      case 'Movimientos':{ Icon = <Billetes/>;
+        break;
+      }
+      case 'Tiendas': {Icon = <Carro/>;
+        break;
+      }
+   
+    }
     return(
         <>
-        <div className={`w-4/12 h-28 flex flex-col justify-center items-center rounded-md shadow-xl bg-[${colorprimario}]`}>
-          <div className={`w-10 h-10 rounded-full bg-[${colorsecundario}]`} >
-                
+        <button className={`w-4/12 h-28 flex flex-col justify-center items-center rounded-md shadow-xl ${colorprimario}`}
+      
+        onClick={() => {navigate(dir)}}>
+          <div className={`w-10 h-10 rounded-full ${colorsecundario} flex justify-center items-center`} >
+             {Icon} 
           </div>
-                <p>
-                  Deudas
-                </p>
-          </div> 
+                {children}
+          </button> 
         </>
     )
 }

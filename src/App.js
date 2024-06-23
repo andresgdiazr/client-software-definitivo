@@ -15,7 +15,9 @@ function App() {
 
   return (
     <div>
-      <ListCustomers />
+
+      <RouterProvider router={router}/>
+
     </div>
   );
 }
