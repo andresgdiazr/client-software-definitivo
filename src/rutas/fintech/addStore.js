@@ -22,6 +22,52 @@ function classNames(...classes) {
 }
 
 export default function AddStore() {
+  const [formData, setFormData] = useState({
+    username: '',
+    categoryCompsId: '',
+    locationId: '',
+    rif: '',
+    password: '',
+    email: '',
+    phone: '',
+    role: 'tienda',
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const response = await fetch("http://localhost:8080/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if(response.status == 409){//Datos existentes
+        alert(`Ya existe una tienda registrada con el rif ${formData.rif}`);
+        return;
+      }else if(!response.ok){
+        throw new Error("Error al enviar los datos");
+      }
+      const data = await response.json();
+      
+      console.log("Datos enviados exitosamente:", data);
+      alert("Usuario registrado con exito");
+      
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <div className="min-h-full">
@@ -157,16 +203,15 @@ export default function AddStore() {
                 </h2>
               </div> */}
               <form
-                action="#"
-                method="POST"
                 className="mx-auto max-w-3xl group"
+                onSubmit={handleSubmit}
                 noValidate
               >
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                   {/* nombre */}
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="nombre"
+                      htmlFor="username"
                       className="block text-sm font-semibold leading-6 text-gray-900"
                     >
                       Nombre
@@ -174,15 +219,17 @@ export default function AddStore() {
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name="nombre"
-                        id="nombre"
-                        autoComplete="company-name"
+                        name="username"
+                        id="username"
+                        autoComplete="username"
                         className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 peer invalid:[&:not(:placeholder-shown)]:ring-red-500 focus:outline-none focus:ring-1 focus:ring-black"
                         placeholder="Nombre de la empresa"
                         pattern="^[a-zA-Z0-9]+$"
+                        value={formData.username || ""}
+                        onChange={handleChange}
                         required
                       />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                      <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
                         No se permiten caracteres especiales.
                       </p>
                     </div>
@@ -200,19 +247,22 @@ export default function AddStore() {
                         type="text"
                         name="rif"
                         id="rif"
-                        autoComplete="company-id"
+                        autoComplete="rif"
                         className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 peer invalid:[&:not(:placeholder-shown)]:ring-red-500 focus:outline-none focus:ring-1 focus:ring-black"
                         placeholder="V-12345678-1"
-                        pattern="^[EIJV]-\d{8}-\d$"
+                        // pattern="^[EIJV]-\d{8}-\d$"
+                        pattern="^\d{8}-\d$"
+                        value={formData.rif || ""}
+                        onChange={handleChange}
                         required
                       />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
-                        Ingrese un formato válido (ej. V-12345678-1).
+                      <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                        Ingrese un formato válido (ej. 12345678-1).
                       </p>
                     </div>
                   </div>
                   {/* direccion */}
-                  <div className="col-span-full">
+                  {/* <div className="col-span-full">
                     <label
                       htmlFor="direccion"
                       className="block text-sm font-medium leading-6 text-gray-900"
@@ -230,43 +280,63 @@ export default function AddStore() {
                         pattern="^[a-zA-Z0-9\s\.,#\-\/\p{L}]+$"
                         required
                       />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                      <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
                         Ingrese un formato de dirección válido.
                       </p>
                     </div>
-                  </div>
-                  <div className="sm:col-span-2 sm:col-start-1">
+                  </div> */}
+                  <div className="sm:col-span-3 sm:col-start-1">
                     <label
-                      htmlFor="ciudad"
+                      htmlFor="locationId"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                      Ciudad
+                      Locación
                     </label>
                     <div className="mt-2.5">
-                      <input
+                      <select
+                        id="locationId"
+                        name="locationId"
+                        className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none focus:ring-1 focus:ring-black"
+                        value={formData.locationId || ""}
+                        onChange={handleChange}
+                      >
+                        <option value="">Selecciona tu locación</option>
+                        <option value="1">San Cristóbal</option>
+                      </select>
+                      {/* <input
                         type="text"
-                        name="ciudad"
-                        id="ciudad"
+                        name="locacion"
+                        id="locacion"
                         autoComplete="address-level2"
                         className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 peer invalid:[&:not(:placeholder-shown)]:ring-red-500 focus:outline-none focus:ring-1 focus:ring-black"
                         placeholder="Ciudad Principal"
                         pattern="^[a-zA-Z\s\p{L}]+$"
                         required
-                      />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                      /> */}
+                      {/* <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
                         Ingrese un formato de ciudad válido.
-                      </p>
+                      </p> */}
                     </div>
                   </div>
-                  <div className="sm:col-span-2">
+                  <div className="sm:col-span-3">
                     <label
-                      htmlFor="region"
+                      htmlFor="categoryCompsId"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                      Estado / Provincia
+                      Categoría
                     </label>
                     <div className="mt-2.5">
-                      <input
+                      <select
+                        id="categoryCompsId"
+                        name="categoryCompsId"
+                        className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none focus:ring-1 focus:ring-black"
+                        value={formData.categoryCompsId || ""}
+                        onChange={handleChange}
+                      >
+                        <option value="">Selecciona tu categoría</option>
+                        <option value="1">Tecnología</option>
+                      </select>
+                      {/* <input
                         type="text"
                         name="region"
                         id="region"
@@ -276,20 +346,29 @@ export default function AddStore() {
                         pattern="^[a-zA-Z\s\p{L}]+$"
                         required
                       />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                      <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
                         Ingrese un formato de estado válido.
-                      </p>
+                      </p> */}
                     </div>
                   </div>
-                  <div className="sm:col-span-2">
+                  {/*<div className="sm:col-span-2">
                     <label
-                      htmlFor="codigo-postal"
+                      htmlFor="status"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
-                      Código postal
+                      Status
                     </label>
-                    <div className="mt-2.5">
-                      <input
+                     <div className="mt-2.5">
+                      <select
+                        id="status"
+                        name="status"
+                        className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:outline-none focus:ring-1 focus:ring-black"
+                      >
+                        <option value="">Selecciona status</option>
+                        <option value="1">Tecnología</option>
+                        <option value="2">Tecnología</option>
+                      </select>
+                      { <input
                         type="text"
                         name="codigo-postal"
                         id="codigo-postal"
@@ -299,16 +378,16 @@ export default function AddStore() {
                         pattern="^[0-9\s\-]+$"
                         required
                       />
-                      <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
-                        Ingrese un formato válido.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="border-b border-gray-900/10 pb-4 col-span-full">
+                      <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                        Ingrese un formato válido. 
+                      </p>}
+                    </div> 
+                  </div>*/}
+                  <div className="mt-6 border-b border-gray-900/10 pb-4 col-span-full">
                     <h2 className="text-lg font-semibold leading-7 text-gray-900">
                       Información de contacto
                     </h2>
-                    <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                       {/* email */}
                       <div className="sm:col-span-3">
                         <label
@@ -325,8 +404,10 @@ export default function AddStore() {
                             autoComplete="email"
                             placeholder="correo@electronico.com"
                             className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 peer invalid:[&:not(:placeholder-shown)]:ring-red-500 focus:outline-none focus:ring-1 focus:ring-black"
+                            value={formData.email || ""}
+                            onChange={handleChange}
                           />
-                          <p class="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
+                          <p className="mt-2 invisible peer-invalid:visible text-red-600 text-sm">
                             Ingrese un correo electrónico válido.
                           </p>
                         </div>
@@ -334,7 +415,7 @@ export default function AddStore() {
                       {/* phone number */}
                       <div className="sm:col-span-3">
                         <label
-                          htmlFor="phone-number"
+                          htmlFor="phone"
                           className="block text-sm font-semibold leading-6 text-gray-900"
                         >
                           Número de teléfono
@@ -342,15 +423,17 @@ export default function AddStore() {
                         <div className="relative mt-2.5">
                           <input
                             type="tel"
-                            name="phone-number"
-                            id="phone-number"
+                            name="phone"
+                            id="phone"
                             autoComplete="tel"
                             placeholder="+584143489762"
                             className="block w-full rounded-md border-1 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:text-sm sm:leading-6 peer invalid:[&:not(:placeholder-shown)]:ring-red-500 focus:outline-none focus:ring-1 focus:ring-black"
                             pattern="^[0-9\s\-+]+$"
+                            value={formData.phone || ""}
+                            onChange={handleChange}
                             required
                           />
-                          <p class="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
+                          <p className="mt-2 invisible peer-[&:not(:placeholder-shown):invalid]:visible text-red-600 text-sm">
                             Ingrese un formato de número telefónico válido.
                           </p>
                         </div>

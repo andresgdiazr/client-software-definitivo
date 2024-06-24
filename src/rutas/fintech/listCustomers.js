@@ -7,6 +7,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import EditCustomer from "./editCustomer";
+import { Link, useNavigate } from 'react-router-dom';
 
 const user = {
   name: "Tom Cook",
@@ -15,8 +16,8 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Tiendas", href: "#", current: true },
-  { name: "Clientes", href: "#", current: false },
+  { name: "Tiendas", href: "/listar-clientes", current: true },
+  { name: "Clientes", href: "/agregar-tienda", current: false },
 ];
 
 function classNames(...classes) {
@@ -54,9 +55,9 @@ export default function ListCustomers() {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.name}
-                            href={item.href}
+                            to={item.href}
                             className={classNames(
                               item.current
                                 ? "bg-gray-900 text-white"
@@ -66,7 +67,7 @@ export default function ListCustomers() {
                             aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -114,8 +115,8 @@ export default function ListCustomers() {
                   {navigation.map((item) => (
                     <DisclosureButton
                       key={item.name}
-                      as="a"
-                      href={item.href}
+                      as="Link"
+                      to={item.href}
                       className={classNames(
                         item.current
                           ? "bg-gray-900 text-white"

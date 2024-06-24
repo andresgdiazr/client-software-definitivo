@@ -1,16 +1,24 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const navigation = [
-  { name: "Inicio", href: "#" },
-  { name: "Tiendas", href: "#" },
-  { name: "Clientes", href: "#" },
+  { name: "Inicio", href: "/" },
+  { name: "Tiendas", href: "/tienda" },
+  { name: "Clientes", href: "/cliente" },
 ];
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('token');
+    // Si hay un token y es válido (puedes validar su expiración o firma según tu implementación)
+    return token ? true : false;
+  };
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -33,22 +41,22 @@ export default function Home() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a
+              <Link
+                to={item.href}
                 key={item.name}
-                href={item.href}
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
+            <Link
+              to={"/login"}
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Iniciar Sesion <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </nav>
         <Dialog
@@ -125,18 +133,12 @@ export default function Home() {
               +200 tiendas a nivel nacional trabajan con nosotros.
             </p>
             <div className="mt-6 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              <Link
+                to={"/login"}
+                className="rounded-md bg-green-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
               >
                 Iniciar Sesion
-              </a>
-              {/* <a
-                href="#"
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Iniciar sesion <span aria-hidden="true">→</span>
-              </a> */}
+              </Link>
             </div>
           </div>
         </div>
