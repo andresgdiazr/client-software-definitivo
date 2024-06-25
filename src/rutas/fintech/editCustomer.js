@@ -1,4 +1,11 @@
 export default function EditCustomer({ setIsModalOpen, handleSave }) {
+
+  const handleSubmit = () => {
+    alert("Usuario actualizado")
+
+    handleSave();
+  }
+
   return (
     <div
       id="crud-modal"
@@ -21,7 +28,7 @@ export default function EditCustomer({ setIsModalOpen, handleSave }) {
           {/* <!-- Modal header --> */}
           <div class="flex p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-              Maria Corina Machado
+              Maria Perez
             </h3>
             <button
               type="button"
@@ -48,7 +55,7 @@ export default function EditCustomer({ setIsModalOpen, handleSave }) {
             </button>
           </div>
           {/* <!-- Modal body --> */}
-          <form class="p-4 md:p-5">
+          <form class="p-4 md:p-5" onSubmit={handleSubmit}>
             <div class="grid gap-4 mb-8 grid-cols-2">
               <div class="col-span-2 sm:col-span-1">
                 <label
@@ -79,8 +86,8 @@ export default function EditCustomer({ setIsModalOpen, handleSave }) {
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500 outline-none focus:outline-none"
                 >
                   <option selected="">Seleccionar status</option>
-                  <option value="Activo">Activo</option>
-                  <option value="PC">Inactivo</option>
+                  <option value="Activo">Solvente</option>
+                  <option value="PC">Moroso</option>
                 </select>
               </div>
               <div class="col-span-2">
@@ -103,7 +110,6 @@ export default function EditCustomer({ setIsModalOpen, handleSave }) {
             <button
               type="submit"
               class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-700"
-              onClick={handleSave}
             >
               <svg
                 class="me-1 -ms-1 w-5 h-5"

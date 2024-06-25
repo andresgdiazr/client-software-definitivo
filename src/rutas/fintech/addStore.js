@@ -13,8 +13,8 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Tiendas", href: "#", current: true },
-  { name: "Clientes", href: "#", current: false },
+  { name: "Tiendas", href: "/fintech/listar-clientes", current: true },
+  { name: "Clientes", href: "/fintech/agregar-tienda", current: false },
 ];
 
 function classNames(...classes) {

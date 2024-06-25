@@ -16,8 +16,8 @@ const user = {
     "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
 };
 const navigation = [
-  { name: "Tiendas", href: "/listar-clientes", current: true },
-  { name: "Clientes", href: "/agregar-tienda", current: false },
+  { name: "Tiendas", href: "/fintech/listar-clientes", current: true },
+  { name: "Clientes", href: "/fintech/agregar-tienda", current: false },
 ];
 
 function classNames(...classes) {
@@ -167,7 +167,7 @@ export default function ListCustomers() {
           </div>
           <main>
             <div className="mx-auto max-w-7xl py-3 sm:px-6 lg:px-8 ">
-              <form class="mb-10 max-w-md mx-auto">
+              <form class="mb-10 max-w-md mx-auto" >
                 <label
                   for="default-search"
                   class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -244,7 +244,7 @@ export default function ListCustomers() {
                         Activo
                       </th>
                       <td class="px-6 py-4">1331</td>
-                      <td class="px-6 py-4">Maria Corina Machado</td>
+                      <td class="px-6 py-4">Maria Perez</td>
                       <td class="px-6 py-4">18.782.573</td>
                       <td class="px-6 py-4">Barrio sucre</td>
                       <td class="px-6 py-4">+584265830977</td>
@@ -258,90 +258,7 @@ export default function ListCustomers() {
                         </a>
                       </td>
                     </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Activo
-                      </th>
-                      <td class="px-6 py-4">1331</td>
-                      <td class="px-6 py-4">Maria Corina Machado</td>
-                      <td class="px-6 py-4">18.782.573</td>
-                      <td class="px-6 py-4">Barrio sucre</td>
-                      <td class="px-6 py-4">+584265830977</td>
-                      <td class="px-6 py-4">
-                        <a
-                          href="#"
-                          class="font-medium text-blue-600 dark:text-green-500 hover:underline"
-                        >
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Activo
-                      </th>
-                      <td class="px-6 py-4">1331</td>
-                      <td class="px-6 py-4">Maria Corina Machado</td>
-                      <td class="px-6 py-4">18.782.573</td>
-                      <td class="px-6 py-4">Barrio sucre</td>
-                      <td class="px-6 py-4">+584265830977</td>
-                      <td class="px-6 py-4">
-                        <a
-                          href="#"
-                          class="font-medium text-blue-600 dark:text-green-500 hover:underline"
-                        >
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Activo
-                      </th>
-                      <td class="px-6 py-4">1331</td>
-                      <td class="px-6 py-4">Maria Corina Machado</td>
-                      <td class="px-6 py-4">18.782.573</td>
-                      <td class="px-6 py-4">Barrio sucre</td>
-                      <td class="px-6 py-4">+584265830977</td>
-                      <td class="px-6 py-4">
-                        <a
-                          href="#"
-                          class="font-medium text-blue-600 dark:text-green-500 hover:underline"
-                        >
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                      <th
-                        scope="row"
-                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                      >
-                        Activo
-                      </th>
-                      <td class="px-6 py-4">1331</td>
-                      <td class="px-6 py-4">Maria Corina Machado</td>
-                      <td class="px-6 py-4">18.782.573</td>
-                      <td class="px-6 py-4">Barrio sucre</td>
-                      <td class="px-6 py-4">+584265830977</td>
-                      <td class="px-6 py-4">
-                        <a
-                          href="#"
-                          class="font-medium text-blue-600 dark:text-green-500 hover:underline"
-                        >
-                          Edit
-                        </a>
-                      </td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
@@ -364,8 +281,8 @@ export default function ListCustomers() {
                   <div>
                     <p className="text-sm text-gray-300">
                       Showing <span className="font-medium">1</span> to{" "}
-                      <span className="font-medium">10</span> of{" "}
-                      <span className="font-medium">97</span> results
+                      <span className="font-medium">1</span> of{" "}
+                      <span className="font-medium">1</span> results
                     </p>
                   </div>
                   <div>
@@ -390,39 +307,6 @@ export default function ListCustomers() {
                         className="relative z-10 inline-flex items-center bg-green-500 px-4 py-2 text-sm font-semibold text-gray-300 focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500"
                       >
                         1
-                      </a>
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0"
-                      >
-                        2
-                      </a>
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0"
-                      >
-                        3
-                      </a>
-                      <span className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0">
-                        ...
-                      </span>
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0"
-                      >
-                        8
-                      </a>
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0"
-                      >
-                        9
-                      </a>
-                      <a
-                        href="#"
-                        className="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-300 ring-1 ring-inset ring-gray-800 hover:bg-green-500 focus:z-20 focus:outline-offset-0"
-                      >
-                        10
                       </a>
                       <a
                         href="#"

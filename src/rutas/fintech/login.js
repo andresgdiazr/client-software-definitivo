@@ -58,7 +58,7 @@ export default function Login() {
 
           break;
         case "FINTECH":
-          navigate("/fintech", { state: { user: data } });
+          navigate("/fintech/listar-clientes", { state: { user: data } });
 
           break;
       }
